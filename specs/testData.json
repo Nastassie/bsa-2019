@@ -1,0 +1,31 @@
+{
+    "appUrl": "http://bsa-ide.azurewebsites.net",
+    "email": "test@test.com",
+    "emailForRegistration": "ide10@test.com",
+    "password":"12345678",
+    "changedPassword":"123123123",
+    "incorrectCredentialsErrorText":"The email or password is incorrect",
+    "dataChangeSuccessText":"Data successfully changed",
+    "name":"test",
+    "surname":"test",
+    "nickname": "testUser",
+    "changedName":"Martin",
+    "changedSurname":"Luthor",
+    "notificationRegistrationSuccess": "You have successfully registered!",
+    "notificationLoginError": "Http failure response for http://bsa-ide.azurewebsites.net/api/auth/login: 500 Internal Server Error",
+    "notificationLoginSuccess": "Wellcome, test test!\nYou have successfully signed in!",
+    "notificationError": "Invalid input data",
+    "projectName": "testproject",
+    "description": "test test test",
+    "buildsNumber": "5",
+    "buildAttempts": "3",
+    "notificationProjectCreateSuccess": "Project created",
+    "projectDetailsUrl": "bsa-ide.azurewebsites.net/project/",
+    "dashboardUrl": "http://bsa-ide.azurewebsites.net/dashboard",
+    "dashboardMyProjectsUrl": "http://bsa-ide.azurewebsites.net/dashboard/myProjects",
+    "projectNameDelete": "testproject",
+    "errormessage": "can`t retrieve data from the server"
+    
+    
+}
+
