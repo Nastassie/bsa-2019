@@ -36,7 +36,7 @@ class ProjectPageActions {
         page.optionsChoose(index).click();
     }*/
 
-    chooseCLanguage() {
+   /* chooseCLanguage() {
         //page.dropdownListspan[0].waitForDisplayed(2000);
         //page.dropdownListspan[0].click();
         $("label.ng-tns-c10-13.ui-dropdown-label.ui-inputtext.ui-corner-all.ui-placeholder.ng-star-inserted").click();
@@ -104,7 +104,7 @@ class ProjectPageActions {
         page.dropdownListspan[2].click();
         page.gcCompilerChoose.waitForDisplayed(2000);
         page.gcCompilerChoose.click();
-    }
+    }*/
     enterBuildsNumbers(value) {
         page.buildssavedInput.waitForDisplayed(2000);
         page.buildssavedInput.setValue(value);
@@ -113,11 +113,11 @@ class ProjectPageActions {
         page.buildsattemptsInput.waitForDisplayed(2000);
         page.buildsattemptsInput.setValue(value);
     }
-    chooseProjectCardColor(index) {
+  /*  chooseProjectCardColor(index) {
         page.dropdownListspan[3].waitForDisplayed(2000);
         page.dropdownListspan[3].click();
         page.colorProjectCardChoose(index).click();
-    }
+    }*/
     clickCreateButton() {
         page.createButton.waitForDisplayed(2000);
         page.createButton.click();

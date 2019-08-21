@@ -58,7 +58,7 @@ class HelpClass
         this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 3);
     }
 
-    createNewProject(ind1, ind2, ind3, ind4) {
+    createNewProject(ind1, ind2, ind3, ind4, ind5) {
 
         project.addButtonClick();
         browser.pause(2000);
@@ -67,58 +67,71 @@ class HelpClass
         this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 1);
         this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind1);
         browser.pause(2000);
-        //project.chooseCLanguage();
         this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 2);
         this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind2);
         browser.pause(2000);
-        //project.chooseConsoleAppType();
         this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 3);
         this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind3);
-        browser.pause(2000);
-        // project.chooseCoreCLRCompiler();
         project.enterBuildsNumbers(credentials.buildsNumber);
         project.enterBuildsAttempts(credentials.buildAttempts);
-        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 4);
-        this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind4);
         browser.pause(2000);
-      //  project.chooseProjectCardColor(ind4);
-
+      //  this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 4);
+      // this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind4);
+        browser.pause(2000);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 5);
+        this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind5);
+        browser.pause(2000);
         project.clickCreateButton();
 
+    }
+    inputDataInFormCreateProject(name, description, buildsNumber, buildAttempts, ind1, ind2, ind3, ind5) {
+
+        project.addButtonClick();
+        browser.pause(2000);
+        project.enterProjectName(name);
+        project.enterDescription(description);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 1);
+        this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind1);
+        browser.pause(2000);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 2);
+        this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind2);
+        browser.pause(2000);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 3);
+        this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", ind3);
+        project.enterBuildsNumbers(buildsNumber);
+        
+        project.enterBuildsAttempts(buildAttempts);
+        browser.pause(2000);
+      //  this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 4);
+      // this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind4);
+        browser.pause(2000);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 5);
+        this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind5);
+        $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only").waitForEnabled(5000, true);
     }
 
     checkProjectDetailsData(index) {
         assert(page.getTextProjectDetails(index),credentials.projectName);
     }
 
-    clickprojectItemOnDashboard(name) {
-        const project = $$(`//h2[contains(., "${name}")]`);
-        if (project.length === 0) {
-            throw new Error("Element not found");
-        }
-        project[0].scrollIntoView();
-        project[0].click();
-    }
-    returnNameofDeletedProject(){
+    returnExpectedNotificationDeletionProject(){
+        
         dashboard.clickMyProjectTab();
-        browser.pause(5000);
-        browser.pause(5000);
+        browser.pause(3000);
         const projectNameDeleted = $$("h2.title-ellipsis")[0].getText();
-        return projectNameDeleted;
+        const expectednotification = `Project "${projectNameDeleted}" was successfully deleted`
+        return expectednotification;
     }
     clickProjectDetailsOnCard() {
 
-       // dashboard.clickMyProjectTab();
-        browser.pause(5000);
-        
+        browser.pause(1000);
         dashboard.clickCardMenuButton();
-        browser.pause(5000);
+        browser.pause(1000);
         this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 3);
     }
     DeleteProject() {
         const deletebtn = $$("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left")[2];
         deletebtn.click();
-        browser.pause(5000); 
         const deletebtnconfirm = $$("button.undefined.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left.ng-star-inserted")[0];
         deletebtnconfirm.click();
     }

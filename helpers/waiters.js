@@ -1,6 +1,6 @@
 class CustomWaits {
     forSpinner() {
-        const spinner = $('div#preloader');
+        const spinner = $('div.ui-progress-spinner');
         spinner.waitForDisplayed(3000);
         spinner.waitForDisplayed(10000, true);
 

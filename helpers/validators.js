@@ -30,6 +30,11 @@ class CustomValidates {
         const actualText = notification.getText()
         assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
     }
+    tooltipNotificationTextIs(expectedText, index) {
+        const notification = $("div.invalid.ng-star-inserted")[index];
+        const actualText = notification.getText()
+        assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
+    }
 
     successNotificationTextIs(expectedText) {
         

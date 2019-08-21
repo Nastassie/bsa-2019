@@ -12,10 +12,8 @@ describe('Online-IDE', () => {
     beforeEach(() => {
        browser.maximizeWindow();
        browser.url(credentials.appUrl);
-       browser.pause(5000);
-      //browser.url('http://bsa-ide.azurewebsites.net')
-       //Help.loginWithDefaultUser(credentials.email, credentials.password);
-       //Wait.forSpinner();
+       browser.pause(1000);
+
     
    });
 
@@ -30,6 +28,10 @@ describe('Online-IDE', () => {
        validate.successNotificationTextIs(credentials.notificationRegistrationSuccess);
        wait.forNotificationToDisappear(); 
        browser.pause(5000); 
+       Help.logOut();
+       Help.loginWithCustomUser(credentials.email, credentials.password);
+       validate.successNotificationTextIs(credentials.notificationLoginSuccess);
+       wait.forNotificationToDisappear(); 
        Help.logOut();
        
    });

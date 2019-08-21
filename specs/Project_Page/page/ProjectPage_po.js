@@ -4,8 +4,8 @@ class ProjectPage {
     
     get projectNameInput () {return $("input[placeholder=name]")};
     get descriptionInput () {return $('textarea.ng-untouched.ng-pristine.ng-invalid.ui-inputtext.ui-corner-all.ui-state-default.ui-widget')};
-    //get dropdownListspan () {return $$("span.ui-dropdown-trigger-icon.ui-clickable.pi.pi-chevron-down")};
     get dropdownListspan () {return $$("div.ui-dropdown-trigger.ui-state-default.ui-corner-right")};
+    get publicProjectAccess () {return $("div.ng-trigger.ng-trigger-overlayAnimation.ng-tns-c24-46.ui-dropdown-panel.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ng-star-inserted")};
     get optionsChoose () {return $$("li.ui-dropdown-item.ui-corner-all")};
     
     get cSharpLanguageChoose () {return $("li[aria-label=C#]")};
@@ -21,7 +21,7 @@ class ProjectPage {
     get gcCompilerChoose () {return $("li[aria-label=Gc]")};
     get buildssavedInput () {return $("input[placeholder=builds]")};
     get buildsattemptsInput () {return $("input[placeholder='build attempts']")};
-    get colorProjectCardChoose () {return $$("p-dropdownitem.ng-tns-c18-31.ng-star-inserted")};
+   // get colorProjectCardChoose () {return $$("p-dropdownitem.ng-tns-c18-31.ng-star-inserted")};
     get createButton () {return $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only")};
 
 
