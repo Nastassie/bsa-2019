@@ -1,4 +1,4 @@
-const LoginPage = require('../page/Login_po');
+const LoginPage = require('../page/Auhtentication_po');
 const page = new LoginPage();
 
 class LoginActions {
@@ -10,6 +10,10 @@ class LoginActions {
     clickSignupbtn() {
         page.signupbtn.waitForDisplayed(2000);
         page.signupbtn.click();
+    }
+    clickRecoveryPassword(){
+        page.recoveryPassword.waitForDisplayed(2000);
+        page.recoveryPassword.click();
     }
     enterFirstName(value) {
         page.firstNameInput.waitForDisplayed(2000);

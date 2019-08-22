@@ -24,15 +24,14 @@ describe('Online-IDE', () => {
        
       browser.pause(5000);
        Help.createNewProject(1, 1, 1, 1, 3);
-       validate.successNotificationTextIs(credentials.notificationProjectCreateSuccess);
+       validate.notificationTextIs(credentials.notificationProjectCreateSuccess);
        wait.forNotificationToDisappear(); 
        
        validate.navigationToPage(credentials.projectDetailsUrl);
        browser.url(credentials.dashboardMyProjectsUrl);
-       browser.pause(5000);
+       browser.pause(1000);
        validate.verifyProjectTitle(credentials.projectName)
-       browser.pause(5000); 
-
+       
        Help.logOut();
        
    });
@@ -42,15 +41,28 @@ describe('Online-IDE', () => {
      Help.inputDataInFormCreateProject("1", "test", "1", "0", 1, 1, 1, 8);
      Help.logOut();
      
- });
- it('create a new project with too long name', () => {
+    });
+    xit('create a new project with too long name', () => {
        
     browser.pause(5000);
      Help.inputDataInFormCreateProject("this name is too long to be use for our purpose", "test", "1", "0", 1, 1, 1, 8);
      Help.logOut();
      
  });
-   
+ xit('create a new project with invalid saved builds number', () => {
+       
+    browser.pause(5000);
+     Help.inputDataInFormCreateProject("test", "test", "12", "0", 1, 1, 1, 8);
+     Help.logOut();
+     
+ });
+ xit('create a new project with invalid builds attempts number', () => {
+       
+    browser.pause(5000);
+     Help.inputDataInFormCreateProject("test", "test", "2", "77", 1, 1, 1, 8);
+     Help.logOut();
+     
+ });
           
    
 });

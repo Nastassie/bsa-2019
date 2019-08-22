@@ -2,7 +2,7 @@ const credentials = require('./../testData.json');
 const Help = require('../../helpers/helpers');
 const Assert = require('../../helpers/validators');
 const Wait = require('../../helpers/waiters');
-const LoginPage = require('../Login/page/Login_po');
+const LoginPage = require('./page/Auhtentication_po');
 const page = new LoginPage();
 const validate = new Assert();
 const wait = new Wait();
@@ -25,13 +25,17 @@ describe('Online-IDE', () => {
        
       
        Help.registerNewAccount(credentials.name, credentials.surname, credentials.nickname, credentials.email, credentials.password);
-       validate.successNotificationTextIs(credentials.notificationRegistrationSuccess);
-       wait.forNotificationToDisappear(); 
+      /* validate.notificationTextIs(credentials.notificationRegistrationSuccess);
+       wait.forNotificationToDisappear();      
+       validate.notificationTextIs(credentials.notificationInfo);
+       wait.forNotificationToDisappear(); */
+
        browser.pause(5000); 
        Help.logOut();
        Help.loginWithCustomUser(credentials.email, credentials.password);
-       validate.successNotificationTextIs(credentials.notificationLoginSuccess);
+       validate.notificationTextIs(credentials.notificationLoginSuccess);
        wait.forNotificationToDisappear(); 
+
        Help.logOut();
        
    });
@@ -40,7 +44,7 @@ describe('Online-IDE', () => {
        
       
     Help.loginWithDefaultUser();
-    validate.successNotificationTextIs(credentials.notificationLoginSuccess);
+    validate.notificationTextIs(credentials.notificationLoginSuccess);
     wait.forNotificationToDisappear(); 
     browser.pause(5000); 
     Help.logOut();
@@ -51,7 +55,7 @@ describe('Online-IDE', () => {
        
       
         Help.loginWithCustomUser(credentials.email, credentials.changedPassword);
-        validate.errorNotificationTextIs(credentials.notificationLoginError);
+        validate.notificationTextIs(credentials.notificationLoginError);
         wait.forNotificationToDisappear(); 
        
         
@@ -60,7 +64,7 @@ describe('Online-IDE', () => {
        
       
         Help.loginWithCustomUser('', '');
-        validate.errorNotificationTextIs(credentials.notificationLoginError);
+        validate.notificationTextIs(credentials.notificationLoginError);
         wait.forNotificationToDisappear(); 
        
         
@@ -69,7 +73,7 @@ describe('Online-IDE', () => {
        
       
         Help.registerNewAccount('', '', '', '', '');
-        validate.errorNotificationTextIs(credentials.notificationError);
+        validate.notificationTextIs(credentials.notificationError);
         wait.forNotificationToDisappear(); 
            
             
@@ -78,21 +82,46 @@ describe('Online-IDE', () => {
        
       
         Help.registerNewAccount(credentials.name, credentials.surname, credentials.nickname, credentials.email, credentials.password);
-        validate.errorNotificationTextIs(credentials.notificationError);
+        validate.notificationTextIs(credentials.notificationError);
         wait.forNotificationToDisappear(); 
                    
                     
-            });
+        });
     xit('register with email without domain', () => {
            
           
         Help.registerNewAccount(credentials.name, credentials.surname, credentials.nickname, 'test@test', credentials.password);
-        validate.errorNotificationTextIs(credentials.notificationError);
+        validate.notificationTextIs(credentials.notificationError);
         wait.forNotificationToDisappear(); 
                
                 
-            });
-
+        });
+    xit('recovery password with invalid email', () => {
+           
           
+        Help.recoveryPassword(credentials.notRegisteredEmail);
+        validate.notificationTextIs(credentials.notificationErrorRecovery);
+        wait.forNotificationToDisappear(); 
+               
+                
+        });
+    xit('recovery password with registered email', () => {
+           
+          
+        Help.recoveryPassword(credentials.email);
+        validate.notificationTextIs(credentials.notificationSuccessRecovery);
+        wait.forNotificationToDisappear(); 
+                   
+                    
+        });
+    xit('recovery password with invalid data', () => {
+           
+          
+        Help.recoveryPassword(credentials.invalidEmail);
+        validate.notificationTextIs(credentials.notificationInvalidDataRecovery);
+        wait.forNotificationToDisappear(); 
+                       
+                        
+        });
    
 });

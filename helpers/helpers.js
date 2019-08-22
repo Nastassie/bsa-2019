@@ -1,6 +1,6 @@
-const LoginActions = require('../specs/Login/actions/Login_pa');
+const LoginActions = require('../specs/Authentication/actions/Authentication_pa');
 const page = new LoginActions();
-const ProjectPageActions = require('../specs/Project_Page/actions/ProjectPage_pa');
+const ProjectPageActions = require('../specs/Create_Project_Page/actions/CreateProjectPage_pa');
 const project = new ProjectPageActions();
 const DashboardActions = require('../specs/Dashboard/actions/Dashboard_pa');
 const dashboard = new DashboardActions();
@@ -52,10 +52,22 @@ class HelpClass
         page.enterPassword(password);
         page.clickCreateButton();
     }
+    recoveryPassword(email) {
 
+        page.clickloginbtn();
+     
+        browser.pause(3000);
+        page.clickRecoveryPassword();
+        page.enterEmail(email);
+        
+        page.clickCreateButton();
+    }
     logOut() {
+
+        browser.url(credentials.appUrl);
+        browser.pause(5000);
         page.clickLogOutButton();
-        this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 3);
+        this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 2);
     }
 
     createNewProject(ind1, ind2, ind3, ind4, ind5) {
@@ -109,11 +121,22 @@ class HelpClass
         this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind5);
         $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only").waitForEnabled(5000, true);
     }
+    inputChangedDataInForm(name, description, buildsNumber, buildAttempts, ind5) {
 
-    checkProjectDetailsData(index) {
-        assert(page.getTextProjectDetails(index),credentials.projectName);
+
+        project.enterProjectName(name);
+        project.enterDescription(description);
+        project.enterBuildsNumbers(buildsNumber);
+     
+        project.enterBuildsAttempts(buildAttempts);
+        browser.pause(2000);
+      //  this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 4);
+      // this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind4);
+        browser.pause(2000);
+        this.browserClickOnArrayElement("div.ui-dropdown-trigger.ui-state-default.ui-corner-right", 2);
+        this.browserClickOnArrayElement("div.ui-helper-clearfix.ng-star-inserted", ind5);
+        project.clickCreateButton();
     }
-
     returnExpectedNotificationDeletionProject(){
         
         dashboard.clickMyProjectTab();
@@ -123,10 +146,19 @@ class HelpClass
         return expectednotification;
     }
     clickProjectDetailsOnCard() {
-
+        //browser.pause(3000);
+        this.browserClickOnArrayElement("div.menu li", 2);;
         browser.pause(1000);
         dashboard.clickCardMenuButton();
         browser.pause(1000);
+        this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 2);
+    }
+    clickProjectSettingsOnCard() {
+
+        this.browserClickOnArrayElement("div.menu li", 2);
+        browser.pause(3000);
+        dashboard.clickCardMenuButton();
+        browser.pause(3000);
         this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 3);
     }
     DeleteProject() {

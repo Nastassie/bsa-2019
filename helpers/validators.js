@@ -5,7 +5,7 @@ class CustomValidates {
 
     
 
-    elementCountIs(locator, expectedQty) {
+   /* elementCountIs(locator, expectedQty) {
         const els = locator;
         const actualQty = els.length;
 
@@ -22,19 +22,26 @@ class CustomValidates {
         const attr = locator.getAttribute('class');
         expect(attr, `${attr} doesn't include error class`).to.include("error");
     }
+*/  
 
-
-
-    errorNotificationTextIs(expectedText) {
+    notificationTextIs(expectedText) {
+      
+    const notification = $('div.toast-message.ng-star-inserted');
+    const actualText = notification.getText()
+    assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
+    
+    }
+    tooltipNotificationTextIs(expectedText, index) {
+    const notification = $("div.invalid.ng-star-inserted")[index];
+    const actualText = notification.getText()
+    assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
+    }
+   /* errorNotificationTextIs(expectedText) {
         const notification = $('div.toast-message.ng-star-inserted');
         const actualText = notification.getText()
         assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
     }
-    tooltipNotificationTextIs(expectedText, index) {
-        const notification = $("div.invalid.ng-star-inserted")[index];
-        const actualText = notification.getText()
-        assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
-    }
+    
 
     successNotificationTextIs(expectedText) {
         
@@ -45,18 +52,15 @@ class CustomValidates {
     }
     InfoNotificationTextIs(expectedText) {
       
-        const notification = $('div.toast.is-info.is-top div');
+        const notification = $('div.toast-message.ng-star-inserted');
         const actualText = notification.getText()
         assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
         
-    }
+    }*/
     ChooseListForDeletion(choosenTitle) {
         assert.strictEqual(pageSteps.getListTitle(), credentials.listName);
     }
-    successCreationList(expectedTitle) {
-        const recentList = $$("div.media h3.title.has-text-primary")[0];
-        assert.strictEqual(recentList.getText(), expectedTitle);
-    }
+   
     successnavigationToPage(expectedUrl) {
         const url = new URL(browser.getUrl());
         const actualUrl = url.hostname.toString() + url.pathname.toString();
@@ -73,7 +77,9 @@ class CustomValidates {
         const actualProjectName = titles[titles.length-1].getText()
         assert.equal(actualProjectName, expectedProjectName)
     }
-
+    checkProjectDetailsData(index, expectedData) {
+        assert.equal($$("div.card p")[index].getText(), expectedData);;
+    }
 }
 
 module.exports = CustomValidates;

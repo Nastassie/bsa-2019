@@ -19,28 +19,51 @@ describe('Online-IDE', () => {
        browser.reloadSession();
    });
 
-   xit('delete a project', () => {
-       
-     
-       expectednotification = Help.returnExpectedNotificationDeletionProject();
-       
-       Help.clickProjectDetailsOnCard();
-       browser.pause(1000);
-       validate.navigationToPage(credentials.projectDetailsUrl);
-       const projectUrl = Help.returnUrl();
-       Help.DeleteProject();
-     
-        
-        validate.successNotificationTextIs(expectednotification);
-        wait.forNotificationToDisappear(); 
-       
-       browser.url(projectUrl.toString());
-       validate.errorNotificationTextIs(credentials.errormessage);
-       wait.forNotificationToDisappear(); 
-       Help.logOut();
-       
-   });
 
+   xit('change project settings', () => {
+       
+
+
+    browser.pause(1000);
+    Help.clickProjectSettingsOnCard();
+    //wait.forSpinner();
+    browser.pause(3000);
+    Help.inputChangedDataInForm(credentials.changedProjectName, credentials.changeddescription, credentials.changedBuildsNumber, credentials.changedBuildAttempts, 9);
+    //wait.forSpinner();
+
+    validate.notificationTextIs(credentials.successchangedsettingsnotification);
+    wait.forNotificationToDisappear();
+
+    Help.clickProjectDetailsOnCard();
+    browser.pause(3000);
+    validate.checkProjectDetailsData(0, "Name: "+ credentials.changedProjectName);
+    validate.checkProjectDetailsData(1, "Description: "+ credentials.changeddescription);
+    validate.checkProjectDetailsData(7, "Amount of saved builds: "+ credentials.changedBuildsNumber);
+    validate.checkProjectDetailsData(8, "Amount of build attempts: "+ credentials.changedBuildAttempts);
+    Help.logOut();
+    
+});
+xit('delete a project', () => {
+       
+     
+    expectednotification = Help.returnExpectedNotificationDeletionProject();
+    
+    Help.clickProjectDetailsOnCard();
+    browser.pause(1000);
+    validate.navigationToPage(credentials.projectDetailsUrl);
+    const projectUrl = Help.returnUrl();
+    Help.DeleteProject();
+  
+     
+     validate.notificationTextIs(expectednotification);
+     wait.forNotificationToDisappear(); 
+    
+    browser.url(projectUrl.toString());
+    validate.notificationTextIs(credentials.errormessage);
+    wait.forNotificationToDisappear(); 
+    Help.logOut();
+    
+});
    
           
    

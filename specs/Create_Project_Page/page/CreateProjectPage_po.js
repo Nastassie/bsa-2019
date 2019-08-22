@@ -3,10 +3,11 @@ class ProjectPage {
     get addButton () {return $('button.ui-button-raised.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left')};
     
     get projectNameInput () {return $("input[placeholder=name]")};
-    get descriptionInput () {return $('textarea.ng-untouched.ng-pristine.ng-invalid.ui-inputtext.ui-corner-all.ui-state-default.ui-widget')};
+    get descriptionInput () {return $('textarea')};
+   // get descriptionInput () {return $('textarea.ng-pristine.ng-valid.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ui-state-filled.ng-touched')};
     get dropdownListspan () {return $$("div.ui-dropdown-trigger.ui-state-default.ui-corner-right")};
     get publicProjectAccess () {return $("div.ng-trigger.ng-trigger-overlayAnimation.ng-tns-c24-46.ui-dropdown-panel.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.ng-star-inserted")};
-    get optionsChoose () {return $$("li.ui-dropdown-item.ui-corner-all")};
+    /*get optionsChoose () {return $$("li.ui-dropdown-item.ui-corner-all")};
     
     get cSharpLanguageChoose () {return $("li[aria-label=C#]")};
     get typeScriptLanguageChoose () {return $("li[aria-label=TypeScript]")};
@@ -18,14 +19,14 @@ class ProjectPage {
     get coreCLRCompilerChoose () {return $("li[aria-label=CoreCLR]")};
     get roslynCompilerChoose () {return $("li[aria-label=Roslyn]")};
     get v8CompilerTypeChoose () {return $("li[aria-label=V8]")};
-    get gcCompilerChoose () {return $("li[aria-label=Gc]")};
+    get gcCompilerChoose () {return $("li[aria-label=Gc]")};*/
     get buildssavedInput () {return $("input[placeholder=builds]")};
     get buildsattemptsInput () {return $("input[placeholder='build attempts']")};
    // get colorProjectCardChoose () {return $$("p-dropdownitem.ng-tns-c18-31.ng-star-inserted")};
     get createButton () {return $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only")};
 
 
-    get projectDetailData () {return $$("div.ui-card-content p")};
+    get projectDetailData () {return $$("div.card p")};
 
 };
 
