@@ -7,6 +7,18 @@ const page = new LoginPage();
 const validate = new Assert();
 const wait = new Wait();
 const assert = require('chai').assert;
+function generateRandomString(length) {
+
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < length; i++)
+  
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    
+    return text;
+  
+  }
 describe('Online-IDE', () => {
     
     beforeEach(() => {
@@ -23,20 +35,22 @@ describe('Online-IDE', () => {
 
    xit('registion a new account', () => {
        
-      
-       Help.registerNewAccount(credentials.name, credentials.surname, credentials.nickname, credentials.email, credentials.password);
+    
+    const email = `${generateRandomString(12)}@${generateRandomString(3)}.com`;
+   
+    Help.registerNewAccount(credentials.name, credentials.surname, credentials.nickname, email, credentials.password);
       /* validate.notificationTextIs(credentials.notificationRegistrationSuccess);
        wait.forNotificationToDisappear();      
        validate.notificationTextIs(credentials.notificationInfo);
        wait.forNotificationToDisappear(); */
 
-       browser.pause(5000); 
-       Help.logOut();
-       Help.loginWithCustomUser(credentials.email, credentials.password);
-       validate.notificationTextIs(credentials.notificationLoginSuccess);
-       wait.forNotificationToDisappear(); 
+    browser.pause(5000); 
+    Help.logOut();
+    Help.loginWithCustomUser(email, credentials.password);
+    validate.notificationTextIs(credentials.notificationLoginSuccess);
+    wait.forNotificationToDisappear(); 
 
-       Help.logOut();
+    Help.logOut();
        
    });
 
@@ -96,7 +110,7 @@ describe('Online-IDE', () => {
                
                 
         });
-    xit('recovery password with invalid email', () => {
+    xit('recovery password with not registered email', () => {
            
           
         Help.recoveryPassword(credentials.notRegisteredEmail);
@@ -118,6 +132,7 @@ describe('Online-IDE', () => {
            
           
         Help.recoveryPassword(credentials.invalidEmail);
+        wait.forSpinner();
         validate.notificationTextIs(credentials.notificationInvalidDataRecovery);
         wait.forNotificationToDisappear(); 
                        

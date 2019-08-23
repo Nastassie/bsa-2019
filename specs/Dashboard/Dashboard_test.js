@@ -64,7 +64,37 @@ xit('delete a project', () => {
     Help.logOut();
     
 });
-   
-          
+xit('navigate to project details page', () => {
+       
+    Help.clickProjectDetailsOnCard();
+    browser.pause(1000);
+    validate.navigationToPage(credentials.projectDetailsUrl);
+    
+    Help.logOut();
+    
+});
+xit('add project to favourite', () => {
+    browser.pause(3000);   
+    projectNameToFavourite = Help.addToFavourite(0);
+    Help.navigateToFavouriteProjects();
+    
+    validate.verifyFavouriteProjectTitle(projectNameToFavourite);
+    Help.addToFavourite(0);
+    Help.navigateToFavouriteProjects();
+    validate.verifyNoProjectsInFavourite(credentials.expectedmessageonFavourite);
+    Help.logOut();
+    
+});
+xit('add collaborator', () => {
+    
+   // Help.navigateToMyProjects();
+  //  Help.openProjectWorkspace(index);
+
+
+  //  Help.logOut();
+    
+});
+
+
    
 });

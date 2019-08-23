@@ -12,7 +12,7 @@ describe('Online-IDE', () => {
        browser.url(credentials.appUrl);
        browser.pause(5000);
        Help.loginWithDefaultUser();
-       wait.forSpinner();
+       //wait.forSpinner();
     
    });
 
@@ -20,17 +20,18 @@ describe('Online-IDE', () => {
        browser.reloadSession();
    });
 
-   xit('create a new project with valid data', () => {
+   it('create a new project with valid data', () => {
        
       browser.pause(5000);
-       Help.createNewProject(1, 1, 1, 1, 3);
+       Help.createNewProject(1, 1, 1, 1, 9);
        validate.notificationTextIs(credentials.notificationProjectCreateSuccess);
        wait.forNotificationToDisappear(); 
-       
-       validate.navigationToPage(credentials.projectDetailsUrl);
-       browser.url(credentials.dashboardMyProjectsUrl);
        browser.pause(1000);
-       validate.verifyProjectTitle(credentials.projectName)
+       validate.navigationToPage(credentials.projectDetailsUrl);
+       //browser.url(credentials.dashboardMyProjectsUrl);
+       browser.pause(1000);
+      // validate.verifyProjectTitle(credentials.projectName);
+      validate.checkProjectDetailsData(0, `Name: ${credentials.projectName}`); 
        
        Help.logOut();
        
@@ -49,14 +50,14 @@ describe('Online-IDE', () => {
      Help.logOut();
      
  });
- xit('create a new project with invalid saved builds number', () => {
+    xit('create a new project with invalid saved builds number', () => {
        
     browser.pause(5000);
      Help.inputDataInFormCreateProject("test", "test", "12", "0", 1, 1, 1, 8);
      Help.logOut();
      
  });
- xit('create a new project with invalid builds attempts number', () => {
+    xit('create a new project with invalid builds attempts number', () => {
        
     browser.pause(5000);
      Help.inputDataInFormCreateProject("test", "test", "2", "77", 1, 1, 1, 8);

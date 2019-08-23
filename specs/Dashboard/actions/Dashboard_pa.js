@@ -30,6 +30,10 @@ class DashboardActions {
         page.titleProjectCard[0].waitForDisplayed(2000);
         page.titleProjectCard[0].getText();
     }
+    starProject(index) {
+        page.starProjectCard[index].waitForDisplayed(2000);
+        page.starProjectCard[index].click();
+    }
 
   
 }

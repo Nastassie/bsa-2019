@@ -2,7 +2,7 @@ class DashboardPage {
 
     get menuTabs () {return $$("div.menu li")};
     get addButton () {return $('button.ui-button-raised.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left')};
-    get starProjectCard () {return $$("div.star")};
+    get starProjectCard () {return $$("div.star i")};
     get menuProjectCard () {return $$("div.menu-icon i")};
     get detailsProject () {return $$("a.ui-menuitem-link.ui-corner-all.ng-star-inserted")[2]};
     get settingsProject () {return $$("a.ui-menuitem-link.ui-corner-all.ng-star-inserted")[3]};

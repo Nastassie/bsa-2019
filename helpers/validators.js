@@ -57,9 +57,7 @@ class CustomValidates {
         assert.equal(actualText, expectedText, `Expected ${actualText} to be equal to ${expectedText}`);
         
     }*/
-    ChooseListForDeletion(choosenTitle) {
-        assert.strictEqual(pageSteps.getListTitle(), credentials.listName);
-    }
+
    
     successnavigationToPage(expectedUrl) {
         const url = new URL(browser.getUrl());
@@ -79,6 +77,17 @@ class CustomValidates {
     }
     checkProjectDetailsData(index, expectedData) {
         assert.equal($$("div.card p")[index].getText(), expectedData);;
+    }
+    verifyFavouriteProjectTitle(expectedProjectName) {
+        browser.pause(2000);
+        const title =  $$("h2.title-ellipsis")[0];
+        const actualProjectName = title.getText()
+        assert.equal(actualProjectName, expectedProjectName)
+    }
+    verifyNoProjectsInFavourite (expectedmessage){
+
+        const message = $("div.ng-star-inserted p").getText();
+        assert.equal(message, expectedmessage)
     }
 }
 

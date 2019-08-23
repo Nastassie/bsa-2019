@@ -1,6 +1,6 @@
 {
     "appUrl": "http://bsa-ide.azurewebsites.net",
-    "email": "test1242@test.com",
+    "email": "test@test.com",
     "notRegisteredEmail": "qqqqqqqqqq@fff.ggg",
     "invalidEmail": "1111111111166",
     "password":"12345678",
@@ -34,7 +34,8 @@
     "dashboardMyProjectsUrl": "http://bsa-ide.azurewebsites.net/dashboard/myProjects",
     "projectNameDelete": "testproject",
     "errormessage": "can`t retrieve data from the server",
-    "successchangedsettingsnotification": "New details have successfully saved!"
+    "successchangedsettingsnotification": "New details have successfully saved!",
+    "expectedmessageonFavourite": "You don't have any favourite projects... Yet!)"
     
     
 }

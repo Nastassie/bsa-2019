@@ -1,6 +1,6 @@
 class ProjectPage {
 
-    get addButton () {return $('button.ui-button-raised.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-left')};
+    get addButton () {return $("button.ui-button-raised.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only")};
     
     get projectNameInput () {return $("input[placeholder=name]")};
     get descriptionInput () {return $('textarea')};
@@ -23,9 +23,7 @@ class ProjectPage {
     get buildssavedInput () {return $("input[placeholder=builds]")};
     get buildsattemptsInput () {return $("input[placeholder='build attempts']")};
    // get colorProjectCardChoose () {return $$("p-dropdownitem.ng-tns-c18-31.ng-star-inserted")};
-    get createButton () {return $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only")};
-
-
+    get createButton () {return $("button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.ng-star-inserted")};
     get projectDetailData () {return $$("div.card p")};
 
 };

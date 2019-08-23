@@ -6,9 +6,30 @@ const DashboardActions = require('../specs/Dashboard/actions/Dashboard_pa');
 const dashboard = new DashboardActions();
 const credentials = require('./../specs/testData.json');
 
+function  generateRandomString(length) {
+
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < length; i++)
+  
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    
+    return text;
+  
+}
+
+
 class HelpClass 
 {
 
+
+    generateEmail(){
+        const localPart = generateRandomString(12);
+        const domainPart = generateRandomString(3);
+        return email = localPart+"@"+domainPart+".com"
+
+    }
     clickItemInList(name) {
         const place = $$(`//div[contains(@class, "place-item")]//h3/a[contains(., "${name}")]`);
         if (place.length === 0) {
@@ -146,7 +167,7 @@ class HelpClass
         return expectednotification;
     }
     clickProjectDetailsOnCard() {
-        //browser.pause(3000);
+        browser.pause(3000);
         this.browserClickOnArrayElement("div.menu li", 2);;
         browser.pause(1000);
         dashboard.clickCardMenuButton();
@@ -171,6 +192,26 @@ class HelpClass
         const urlPage = new URL(browser.getUrl());
         return urlPage;
     }
+    addToFavourite(index){
+        browser.pause(3000);
+        this.browserClickOnArrayElement("div.menu li", 2);
+        browser.pause(3000);
+        dashboard.starProject(index);
+        browser.pause(3000);
+        const projectNameToFavourite = $$("h2.title-ellipsis")[index].getText();
+        return projectNameToFavourite
+    }
+    navigateToFavouriteProjects() {
+        this.browserClickOnArrayElement("div.menu li", 1);
+    }
+    navigateToMyProjects() {
+        this.browserClickOnArrayElement("div.menu li", 2);
+    }
+    openProjectWorkspace(index) {
+        browser.pause(1000);
+        this.browserClickOnArrayElement($$("h2.title-ellipsis"), index);
+    }
+    
 }
 
 module.exports = new HelpClass();
