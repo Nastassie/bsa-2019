@@ -87,11 +87,11 @@ describe('Online-IDE ProjectDetails Page', () => {
         Help.logOut();
         
     });
-    it('delete collaborator', () => {
+    xit('delete collaborator', () => {
         
         Help.clickProjectDetailsOnCard();
         browser.pause(3000);
-       // Help.deleteCollaborator(0);
+        Help.deleteCollaborator(0);
         browser.pause(3000);
         //validate.notificationTextIs(credentials.notificationSuccessDeleteCollaborator);
         Help.checkDetails();

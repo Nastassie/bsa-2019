@@ -95,7 +95,7 @@ class CustomValidates {
     }
     verifyAbsence() {
         const element = $("div.collaborator-item");
-        element.waitForEnabled(5000, true);
+        element.waitForExist(undefined, true);;
     }
 }
 

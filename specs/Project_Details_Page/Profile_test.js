@@ -12,7 +12,7 @@ describe('Online-IDE User profile', () => {
        browser.maximizeWindow();
        browser.url(credentials.appUrl);
        Help.loginWithDefaultUser();
-       wait.forSpinner();
+       //wait.forSpinner();
     
    });
 
@@ -21,26 +21,18 @@ describe('Online-IDE User profile', () => {
    });
 
 
-    xit('change project settings', () => {
+    it('change password', () => {
         
         browser.pause(1000);
-        Help.clickProjectSettingsOnCard();
-        //wait.forSpinner();
-        browser.pause(3000);
-        Help.inputChangedDataInForm(credentials.changedProjectName, credentials.changeddescription, credentials.changedBuildsNumber, credentials.changedBuildAttempts, 4);
-        //wait.forSpinner();
-
-        validate.notificationTextIs(credentials.successchangedsettingsnotification);
-        wait.forNotificationToDisappear();
-
-        Help.clickProjectDetailsOnCard();
-        browser.pause(3000);
-        validate.checkProjectDetailsData(0, "Name: "+ credentials.changedProjectName);
-        validate.checkProjectDetailsData(1, "Description: "+ credentials.changeddescription);
-        validate.checkProjectDetailsData(7, "Amount of saved builds: "+ credentials.changedBuildsNumber);
-        validate.checkProjectDetailsData(8, "Amount of build attempts: "+ credentials.changedBuildAttempts);
+        Help.changePassword(credentials.password, credentials.changedPassword);
+        Help.logOut();
+        Help.loginWithCustomUser(credentials.email, credentials.changedPassword);
+        browser.pause(2000);
+        validate.navigationToPage(credentials.expectedDashboardUrl);
+        Help.changePassword(credentials.changedPassword, credentials.password);
         Help.logOut();
         
+               
     });
 
 

@@ -12,6 +12,8 @@ const ProjectDetailsPage = require('../specs/Project_Details_Page/page/ProjectDe
 const detailsObject = new ProjectDetailsPage();
 const ProfileActions = require('../specs/Profile/actions/Profile_pa');
 const profile = new ProfileActions();
+const ProfilePage = require('../specs/Profile/page/Profile_po');
+const profileObject = new ProfilePage();
 const credentials = require('./../specs/testData.json');
 
 function  generateRandomString(length) {
@@ -263,7 +265,19 @@ class HelpClass
         this.browserClickOnArrayElement(dashboardObject.listboxProjects, index);
 
     }
-    
+    changePassword(currentPassword, newPassword) {
+        profile.clickMyProfileButton();
+        profile.clickEditProfileButton();
+        browser.pause(1000);
+        this.browserClickOnArrayElement(profileObject.editingOptions, 5);
+        browser.pause(1000);
+        profile.entercurrentPassword(currentPassword);
+      //  browser.pause(1000);
+        profile.enterChangedPassword(newPassword);
+        browser.pause(2000);
+       // profile.clickChangeButton();
+       this.browserClickOnArrayElement("span.ui-button-text.ui-clickable", 6);
+    }
 }
 
 module.exports = new HelpClass();

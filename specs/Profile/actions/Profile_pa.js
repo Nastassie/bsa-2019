@@ -30,6 +30,20 @@ class ProfileActions {
         page.saveButton.waitForDisplayed(2000);
         page.saveButton.click();
     }
+    entercurrentPassword(value){
+        page.currentPaswordInput.waitForDisplayed(2000);
+        page.currentPaswordInput.clearValue();
+        page.currentPaswordInput.setValue(value);
+    }
+    enterChangedPassword(value){
+       // page.changedPasswordInput.waitForDisplayed(2000);
+        page.changedPasswordInput.clearValue();
+        page.changedPasswordInput.setValue(value);
+    }
+    clickChangeButton(){
+        page.changeButton.waitForDisplayed(2000);
+        page.changeButton.click();
+    }
     
  
 }
