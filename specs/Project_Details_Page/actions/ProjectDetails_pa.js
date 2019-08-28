@@ -1,7 +1,7 @@
-const DashboardPage = require('../page/Dashboard_po');
-const page = new DashboardPage();
+const ProjectDetailsPage = require('../page/ProjectDetails_po');
+const page = new ProjectDetailsPage();
 
-class DashboardActions {
+class ProjectDetailsActions {
 
 
    /* addButtonClick() {
@@ -9,7 +9,7 @@ class DashboardActions {
         page.addButton.waitForDisplayed(2000);
         page.addButton.click();
     }
-
+*/
     clickMyProjectTab(){
         page.menuTabs[1].waitForDisplayed(2000);
         page.menuTabs[1].click();
@@ -18,7 +18,11 @@ class DashboardActions {
         page.menuProjectCard[0].waitForDisplayed(2000);
         page.menuProjectCard[0].click();
     }
-    clickProjectDetailsButton() {
+    clickDeleteButton(index) {
+        page.deleteCollaboratorButton[index].waitForDisplayed(2000);
+        page.deleteCollaboratorButton[index].click();
+    }
+   /* clickProjectDetailsButton() {
         page.detailsProject.waitForDisplayed(2000);
         page.detailsProject.click(); 
     }
@@ -29,12 +33,12 @@ class DashboardActions {
     getProjectTitle() {
         page.titleProjectCard[0].waitForDisplayed(2000);
         page.titleProjectCard[0].getText();
-    }*/
+    }
     starProject(index) {
         page.starProjectCard[index].waitForDisplayed(2000);
         page.starProjectCard[index].click();
-    }
-   /* enterCollaboratorName(value) {
+    }*/
+    enterCollaboratorName(value) {
         page.inputCollaboratorNickname.waitForDisplayed(2000);
         page.inputCollaboratorNickname.clearValue();
         page.inputCollaboratorNickname.setValue(value);
@@ -42,12 +46,8 @@ class DashboardActions {
   clickSaveButton() {
         page.saveCollaboratorButton.waitForDisplayed(2000);
         page.saveCollaboratorButton.click();
-  }*/
-  enterPtojectTitleforSearch(text){
-      page.searchInput.waitForDisplayed(2000);
-      page.searchInput.clearValue();
-      page.searchInput.setValue(text);
   }
+ 
 }
 
-module.exports = DashboardActions;
+module.exports = ProjectDetailsActions;

@@ -19,7 +19,7 @@ function generateRandomString(length) {
     return text;
   
   }
-describe('Online-IDE', () => {
+describe('Online-IDE authorization', () => {
     
     beforeEach(() => {
        browser.maximizeWindow();
@@ -119,7 +119,7 @@ describe('Online-IDE', () => {
                
                 
         });
-    xit('recovery password with registered email', () => {
+    /*it('recovery password with registered email', () => {
            
           
         Help.recoveryPassword(credentials.email);
@@ -127,14 +127,15 @@ describe('Online-IDE', () => {
         wait.forNotificationToDisappear(); 
                    
                     
-        });
+        });*/
     xit('recovery password with invalid data', () => {
            
           
         Help.recoveryPassword(credentials.invalidEmail);
-        wait.forSpinner();
+      
+        browser.pause(500);
         validate.notificationTextIs(credentials.notificationInvalidDataRecovery);
-        wait.forNotificationToDisappear(); 
+       
                        
                         
         });

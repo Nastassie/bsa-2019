@@ -89,6 +89,14 @@ class CustomValidates {
         const message = $("div.ng-star-inserted p").getText();
         assert.equal(message, expectedmessage)
     }
+    verifyText(elm, expectedResult) {
+        const element = elm.getText();
+        assert.equal(element, expectedResult);
+    }
+    verifyAbsence() {
+        const element = $("div.collaborator-item");
+        element.waitForEnabled(5000, true);
+    }
 }
 
 module.exports = CustomValidates;

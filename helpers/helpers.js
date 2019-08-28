@@ -4,6 +4,14 @@ const ProjectPageActions = require('../specs/Create_Project_Page/actions/CreateP
 const project = new ProjectPageActions();
 const DashboardActions = require('../specs/Dashboard/actions/Dashboard_pa');
 const dashboard = new DashboardActions();
+const ProjectDetailsActions = require('../specs/Project_Details_Page/actions/ProjectDetails_pa');
+const projectDetails = new ProjectDetailsActions();
+const DashboardPage = require('../specs/Dashboard/page/Dashboard_po');
+const dashboardObject = new DashboardPage();
+const ProjectDetailsPage = require('../specs/Project_Details_Page/page/ProjectDetails_po');
+const detailsObject = new ProjectDetailsPage();
+const ProfileActions = require('../specs/Profile/actions/Profile_pa');
+const profile = new ProfileActions();
 const credentials = require('./../specs/testData.json');
 
 function  generateRandomString(length) {
@@ -30,14 +38,14 @@ class HelpClass
         return email = localPart+"@"+domainPart+".com"
 
     }
-    clickItemInList(name) {
+    /*clickItemInList(name) {
         const place = $$(`//div[contains(@class, "place-item")]//h3/a[contains(., "${name}")]`);
         if (place.length === 0) {
             throw new Error("Element not found");
         }
         //place[0].scrollIntoView();
         place[0].click();
-    }
+    }*/
 
     browserClick(elm){ return browser.execute((e) => {document.querySelector(e).click(); }, elm); }
 
@@ -160,25 +168,25 @@ class HelpClass
     }
     returnExpectedNotificationDeletionProject(){
         
-        dashboard.clickMyProjectTab();
+        projectDetails.clickMyProjectTab();
         browser.pause(3000);
-        const projectNameDeleted = $$("h2.title-ellipsis")[0].getText();
+        const projectNameDeleted = dashboardObject.projectCardTitle[0].getText();
         const expectednotification = `Project "${projectNameDeleted}" was successfully deleted`
         return expectednotification;
     }
     clickProjectDetailsOnCard() {
         browser.pause(3000);
-        this.browserClickOnArrayElement("div.menu li", 2);;
+        this.browserClickOnArrayElement(dashboardObject.projectTabsDashbpord, 2);;
         browser.pause(1000);
-        dashboard.clickCardMenuButton();
+        projectDetails.clickCardMenuButton();
         browser.pause(1000);
         this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 2);
     }
     clickProjectSettingsOnCard() {
 
-        this.browserClickOnArrayElement("div.menu li", 2);
+        this.browserClickOnArrayElement(dashboardObject.projectTabsDashbpord, 2);
         browser.pause(3000);
-        dashboard.clickCardMenuButton();
+        projectDetails.clickCardMenuButton();
         browser.pause(3000);
         this.browserClickOnArrayElement("a.ui-menuitem-link.ui-corner-all.ng-star-inserted", 3);
     }
@@ -194,22 +202,66 @@ class HelpClass
     }
     addToFavourite(index){
         browser.pause(3000);
-        this.browserClickOnArrayElement("div.menu li", 2);
+        this.browserClickOnArrayElement(dashboardObject.projectTabsDashbpord, 2);
         browser.pause(3000);
         dashboard.starProject(index);
         browser.pause(3000);
-        const projectNameToFavourite = $$("h2.title-ellipsis")[index].getText();
+        const projectNameToFavourite = dashboardObject.projectCardTitle[index].getText();
         return projectNameToFavourite
     }
     navigateToFavouriteProjects() {
-        this.browserClickOnArrayElement("div.menu li", 1);
+        this.browserClickOnArrayElement(dashboardObject.projectTabsDashbpord, 1);
     }
     navigateToMyProjects() {
-        this.browserClickOnArrayElement("div.menu li", 2);
+        this.browserClickOnArrayElement(dashboardObject.projectTabsDashbpord, 2);
     }
-    openProjectWorkspace(index) {
+   /* openProjectWorkspace(index) {
         browser.pause(1000);
-        this.browserClickOnArrayElement($$("h2.title-ellipsis"), index);
+        this.browserClickOnArrayElement(dashboardObject.projectCardTitle, index);
+    }*/
+    addCollaborators(nickname) {
+        
+        this.browserClickOnArrayElement(detailsObject.navbarDetailsPage, 2);
+        browser.pause(2000);
+        projectDetails.enterCollaboratorName(nickname);
+        browser.pause(2000);
+        
+        this.browserClickOnArrayElement(detailsObject.listboxCollaborators, 1);
+        browser.pause(2000);
+        this.browserClick("div.ui-dropdown-trigger.ui-state-default.ui-corner-right");
+        browser.pause(2000);
+        this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", 3);
+        projectDetails.clickSaveButton();
+
+    }
+    changeCollaboratorsRights(index) {
+        
+        this.browserClickOnArrayElement(detailsObject.navbarDetailsPage, 2);
+        this.browserClick("div.ui-dropdown-trigger.ui-state-default.ui-corner-right");
+        browser.pause(2000);
+        this.browserClickOnArrayElement("li.ui-dropdown-item.ui-corner-all", index);
+        projectDetails.clickSaveButton();
+
+    }
+    deleteCollaborator(index) {
+        
+        this.browserClickOnArrayElement(detailsObject.navbarDetailsPage, 2);
+        browser.pause(3000);
+        projectDetails.clickDeleteButton(index);
+        projectDetails.clickSaveButton();
+       
+
+    }
+    checkDetails() {
+        this.browserClickOnArrayElement(detailsObject.navbarDetailsPage, 1);
+        browser.pause(1000);
+        this.browserClickOnArrayElement(detailsObject.navbarDetailsPage, 2);
+    }
+    searchProjectByTitle(text, index) {
+        dashboard.enterPtojectTitleforSearch(text);
+        browser.pause(2000);
+        this.browserClickOnArrayElement(dashboardObject.listboxProjects, index);
+
     }
     
 }
